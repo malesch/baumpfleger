@@ -1,4 +1,4 @@
-(ns baumpfleger.example
+(ns example
   (:require [clojure.spec :as s]
             [baumpfleger.spec :as bs]))
 
