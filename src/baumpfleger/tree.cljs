@@ -47,7 +47,7 @@
                    :on-change #(let [v (-> % .-target .-value)]
                                  (swap! nc assoc :value v))}]]]))))
 
-(defn render-tree [root-cursor]
+(defn tree-component [root-cursor]
   (let [rc root-cursor]
     (fn []
       [:div.baumpfleger

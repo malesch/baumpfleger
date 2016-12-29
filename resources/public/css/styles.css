@@ -5,7 +5,7 @@ body {
 }
 
 div.baumpfleger {
-  width: 300px;
+  width: 380px;
   background: #f6f6f6;
   margin: auto;
 }
@@ -48,4 +48,25 @@ div.baumpfleger .open:before {
 div.baumpfleger .closed:before {
   content: "►";
   margin-right: 5px;
+}
+
+div#two-col {
+  width: 100%;
+  overflow: auto;
+}
+
+div#col-1 {
+  width: 40%;
+  float: left;
+  border-right: 1px dashed lightgrey;
+}
+
+div#col-2 {
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+div.pp div.pp-control label {
+  margin-right: 10px;
 }
