@@ -25,8 +25,8 @@
     (let [{:keys [id label children open?] :as inode} @tc]
       ^{:key inode}
       [:ul
-       [:li [:span {:style    {:background-color "lightyellow"}
-                    :on-click #(swap! tc update :open? not)} label]]
+       [:li.branch [:span {:on-click #(swap! tc update :open? not)
+                           :class (if open? "open" "closed")} label]]
        [:ul {:style {:display (if (:open? @tc) "display" "none")}}
         (doall
           (for [child children]
@@ -35,18 +35,24 @@
 
 (defmethod ->node :float [tc]
   (fn [tc]
-    (let [{:keys [id label] :as inode} @tc]
+    (let [{:keys [id label value] :as inode} @tc]
       ^{:key inode}
-      [:li [:span (str label " (float) ")]])))
+      [:li.input
+       [:div.input-float
+        [:label label]
+        [:input {:type "text" :value value}]]])))
 
 (defmethod ->node :int [tc]
   (fn [tc]
-    (let [{:keys [id label] :as inode} @tc]
+    (let [{:keys [id label value] :as inode} @tc]
       ^{:key inode}
-      [:li (str label " (int)")])))
+      [:li.input
+       [:div.input-int
+        [:label label]
+        [:input {:type "text" :value value}]]])))
 
 (defn render-tree [itree]
-  [:div
+  [:div.baumpfleger
    (doall
      (for [inode @itree]
        (let [[idx _] inode]

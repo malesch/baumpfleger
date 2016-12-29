@@ -1,0 +1,51 @@
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+div.baumpfleger {
+  width: 300px;
+  background: #f6f6f6;
+  margin: auto;
+}
+
+div.baumpfleger ul {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+div.baumpfleger ul ul {
+  margin-left: 20px;
+}
+
+div.baumpfleger ul ul ul {
+  margin-right: 20px;
+}
+
+div.baumpfleger ul ul ul ul {
+  margin-right: 20px;
+}
+
+div.baumpfleger ul ul ul ul ul {
+  margin-right: 20px;
+}
+
+div.baumpfleger ul {
+  list-style: none;
+}
+
+div.baumpfleger ul li.input input {
+  width: 50px;
+  margin-left: 20px;
+}
+
+div.baumpfleger .open:before {
+  content: "▼";
+  margin-right: 5px;
+}
+
+div.baumpfleger .closed:before {
+  content: "►";
+  margin-right: 5px;
+}

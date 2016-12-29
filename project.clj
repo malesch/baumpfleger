@@ -9,14 +9,24 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [org.clojure/core.async "0.2.391"
                   :exclusions [org.clojure/tools.reader]]
-                 [reagent "0.6.0"]]
+                 [reagent "0.6.0"]
+                 [garden "1.3.2"]]
 
   :plugins [[lein-figwheel "0.5.8"]
-            [lein-cljsbuild "1.1.4" :exclusions [[org.clojure/clojure]]]]
+            [lein-cljsbuild "1.1.4" :exclusions [[org.clojure/clojure]]]
+            [lein-garden "0.3.0"]]
 
   :source-paths ["src"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
+
+  :prep-tasks [["garden" "once"]]
+
+  :garden {:builds [{:id "styles"
+                     :source-paths ["styles"]
+                     :stylesheet baumpfleger.core/styles
+                     :compiler {:output-to "resources/public/css/styles.css"
+                                :pretty-print? true}}]}
 
   :cljsbuild {:builds
               [{:id "dev"
@@ -101,6 +111,4 @@
                    ;; :plugins [[cider/cider-nrepl "0.12.0"]]
                    :repl-options {; for nREPL dev you really need to limit output
                                   :init (set! *print-length* 50)
-                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
-
-)
+                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}})
