@@ -1,9 +1,11 @@
 # Baumpfleger
 
-This is an experimental web editor in ClojureScript for editing nested map values.
+This is an experimental Reagent component for editing hierarchical parameter values. It is by far neither complete nor directly usable but may serve as an example or base for other projects. It lacks mainly a better editing logic, additional types of edit elements (the `input` HTML elements in the leaves) and more sophisticated validation logic. 
 
-## Overview
 
+# Motivation
+
+The original purpose for this component is an other project where parameter lists have to be generated based on nested Java beans holding various parameters. Because the Java project is heavily in flux (adding and removing of parameter classes), the tree descriptor for the Baumpfleger component could be dynamically generated using Reflection, enabling easy processing of the currently available property values.
 
 
 ## Setup
@@ -34,6 +36,6 @@ get live reloading, nor a REPL.
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Marcus Spiegel
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
