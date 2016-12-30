@@ -20,7 +20,7 @@
                :label    "Class A"
                :open?    true
                :children [{:id    :param-1
-                           :label "Param 2"
+                           :label "Param 1"
                            :type  :float
                            :range [0.0 1.0]
                            :value 0.4}

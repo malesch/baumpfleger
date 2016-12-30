@@ -24,7 +24,13 @@
    [:ul {:list-style :none}
     [:li.input
      [:input {:width (px 50)
-              :margin-left (px 20)}]]]
+              :margin-left (px 20)}]
+
+     [:input.invalid {:border "1px dotted red"}]
+     [:input.commit {:border "1px solid green"}]
+
+     [:span.error {:color :red
+                   :margin-left (px 5)}]]]
 
    [:.open:before {:content "\"▼\""
                    :margin-right (px 5)}]

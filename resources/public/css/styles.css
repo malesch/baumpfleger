@@ -40,6 +40,19 @@ div.baumpfleger ul li.input input {
   margin-left: 20px;
 }
 
+div.baumpfleger ul li.input input.invalid {
+  border: 1px dotted red;
+}
+
+div.baumpfleger ul li.input input.commit {
+  border: 1px solid green;
+}
+
+div.baumpfleger ul li.input span.error {
+  color: red;
+  margin-left: 5px;
+}
+
 div.baumpfleger .open:before {
   content: "▼";
   margin-right: 5px;
