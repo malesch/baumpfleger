@@ -1,6 +1,7 @@
  (ns baumpfleger.core
    (:require [garden.def :refer [defstylesheet defstyles]]
-             [garden.units :refer [px percent]]))
+             [garden.units :refer [px percent]]
+             [garden.selectors :as s]))
 
 
 (defstyles styles
@@ -13,29 +14,40 @@
                      :background "#f6f6f6"
                      :margin "auto"}
 
-   ;; indention levels
-   [:ul {:margin-left (px 0)
+   ;; indentation levels
+   [:ul {:list-style   :none
+         :margin-left  (px 0)
          :padding-left (px 0)}
     [:ul {:margin-left (px 20)}
      [:ul {:margin-right (px 20)}
       [:ul {:margin-right (px 20)}
        [:ul {:margin-right (px 20)}]]]]]
 
-   [:ul {:list-style :none}
-    [:li.input
+   ;; edit cell
+   [:div.edit-cell {:width  (percent 60)
+                    :margin 0}
+    [:div.field {:width  (percent 80)
+                 :float  :left}
      [:input {:width (px 50)
-              :margin-left (px 20)}]
+              :float :right
+              :margin-right (px 10)}]
 
      [:input.invalid {:border "1px dotted red"}]
-     [:input.commit {:border "1px solid green"}]
+     [:input.commit {:border "1px solid green"}]]
 
+    [:div.msg {:width  (percent 20)
+               :float  :right}
      [:span.error {:color :red
-                   :margin-left (px 5)}]]]
+                   :white-space :nowrap}]]]
+   [(s/div :.edit-cell (s/after)) {:display :block
+                                   :content "\"\""
+                                   :clear :both}]
 
    [:.open:before {:content "\"▼\""
                    :margin-right (px 5)}]
    [:.closed:before {:content "\"►\""
                      :margin-right (px 5)}]]
+
 
   ;; Styles for tree with data display
   [:div#two-col {:width "100%" :overflow "auto"}]

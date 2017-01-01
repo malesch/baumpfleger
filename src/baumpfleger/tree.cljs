@@ -2,7 +2,6 @@
   (:require [clojure.string :as string]
             [reagent.core :as r]))
 
-
 (defmulti ->node (fn [tc] (or (:type @tc) :branch)))
 
 (defmethod ->node :branch [node-cursor]
@@ -38,23 +37,25 @@
       (let [{:keys [id label range] :as node} @nc]
         ^{:key node}
         [:li.input
-         [:div.input-float
-          [:label label]
-          [:input {:class        (when @error "invalid")
-                   :type         "text"
-                   :value        @inp
-                   :on-key-press #(try
-                                    (let [fval (to-float @inp range)]
-                                      (when (= 13 (.-charCode %))
-                                        (r/rswap! nc assoc :value fval)))
-                                    (catch js/Error e
-                                      (reset! error (.-message e))))
-                   :on-change    #(let [v (-> % .-target .-value)]
-                                    (reset! inp v)
-                                    (when (string/blank? v)
-                                      (r/rswap! nc assoc :value nil)))}]
-          (when error
-            [:span.error @error])]]))))
+         [:div.edit-cell
+          [:div.field
+           [:label label]
+           [:input {:class        (when @error "invalid")
+                    :type         "text"
+                    :value        @inp
+                    :on-key-press #(try
+                                     (let [fval (to-float @inp range)]
+                                       (when (= 13 (.-charCode %))
+                                         (r/rswap! nc assoc :value fval)))
+                                     (catch js/Error e
+                                       (reset! error (.-message e))))
+                    :on-change    #(let [v (-> % .-target .-value)]
+                                     (reset! inp v)
+                                     (when (string/blank? v)
+                                       (r/rswap! nc assoc :value nil)))}]]
+          [:div.msg
+           (when error
+             [:span.error @error])]]]))))
 
 (defn to-int
   "Return the int value for the string input or throw an error, if it
@@ -76,19 +77,21 @@
       (let [{:keys [id label range] :as node} @nc]
         ^{:key node}
         [:li.input
-         [:div.input-int
-          [:label label]
-          [:input {:type      "text"
-                   :value     @inp
-                   :on-key-press #(try
-                                    (when (= 13 (.-charCode %))
-                                      (r/rswap! nc assoc :value (to-int @inp range)))
-                                    (catch js/Error e
-                                      (reset! error (.-message e))))
-                   :on-change    #(let [v (-> % .-target .-value)]
-                                    (reset! inp v))}]
-          (when error
-            [:span.error @error])]]))))
+         [:div.edit-cell
+          [:div.field
+           [:label label]
+           [:input {:type         "text"
+                    :value        @inp
+                    :on-key-press #(try
+                                     (when (= 13 (.-charCode %))
+                                       (r/rswap! nc assoc :value (to-int @inp range)))
+                                     (catch js/Error e
+                                       (reset! error (.-message e))))
+                    :on-change    #(let [v (-> % .-target .-value)]
+                                     (reset! inp v))}]]
+          [:div.msg
+           (when error
+             [:span.error @error])]]]))))
 
 (defn tree-component [root-cursor]
   (let [rc root-cursor]

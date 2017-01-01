@@ -11,6 +11,7 @@ div.baumpfleger {
 }
 
 div.baumpfleger ul {
+  list-style: none;
   margin-left: 0px;
   padding-left: 0px;
 }
@@ -31,26 +32,44 @@ div.baumpfleger ul ul ul ul ul {
   margin-right: 20px;
 }
 
-div.baumpfleger ul {
-  list-style: none;
+div.baumpfleger div.edit-cell {
+  width: 60%;
+  margin: 0;
 }
 
-div.baumpfleger ul li.input input {
+div.baumpfleger div.edit-cell div.field {
+  width: 80%;
+  float: left;
+}
+
+div.baumpfleger div.edit-cell div.field input {
   width: 50px;
-  margin-left: 20px;
+  float: right;
+  margin-right: 10px;
 }
 
-div.baumpfleger ul li.input input.invalid {
+div.baumpfleger div.edit-cell div.field input.invalid {
   border: 1px dotted red;
 }
 
-div.baumpfleger ul li.input input.commit {
+div.baumpfleger div.edit-cell div.field input.commit {
   border: 1px solid green;
 }
 
-div.baumpfleger ul li.input span.error {
+div.baumpfleger div.edit-cell div.msg {
+  width: 20%;
+  float: right;
+}
+
+div.baumpfleger div.edit-cell div.msg span.error {
   color: red;
-  margin-left: 5px;
+  white-space: nowrap;
+}
+
+div.baumpfleger div.edit-cell::after {
+  display: block;
+  content: "";
+  clear: both;
 }
 
 div.baumpfleger .open:before {
